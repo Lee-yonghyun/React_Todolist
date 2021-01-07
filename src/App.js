@@ -1,7 +1,8 @@
 import React from "react";
+import Todotemp from "./components/Todotemp";
 
 const App = () => {
-  return <div>hi</div>;
+  return <Todotemp>템플릿 완성</Todotemp>;
 };
 
 export default App;
