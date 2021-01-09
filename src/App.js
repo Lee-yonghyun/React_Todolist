@@ -11,7 +11,7 @@ class App extends Component {
     todos: [
       { id: 0, text: "리액트", checked: false },
       { id: 1, text: "리액트", checked: true },
-      { id: 2, text: "리액트", checked: false },
+      { id: 2, text: "리액트", checked: true },
     ],
   };
 
@@ -40,7 +40,7 @@ class App extends Component {
   };
 
   render() {
-    const { input } = this.state;
+    const { input, todos } = this.state;
     const { handleChange, handleCreate, handleKeyPress } = this;
 
     return (
@@ -54,7 +54,7 @@ class App extends Component {
           />
         }
       >
-        <TodoItemList />
+        <TodoItemList todos={todos} />
       </Todotemp>
     );
   }
