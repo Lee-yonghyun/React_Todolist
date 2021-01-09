@@ -39,9 +39,27 @@ class App extends Component {
     }
   };
 
+  handleToggle = (id) => {
+    const { todos } = this.state;
+
+    // 파라미터id를 통해 현재 todo의 몇번째 인지를 확인.
+    const index = todos.findIndex((todo) => todo.id === id);
+    const selected = todos[index]; //선택한 todo 객체
+    const nextTodos = [...todos]; // 전체 배열복사
+
+    //기존의 값들을 복사하고 , checked 값을 덮어쓰기
+    nextTodos[index] = {
+      ...selected,
+      checked: !selected.checked,
+    }; //전체 배열에서 선택된 인자의 checked만 바꾸기.
+
+    this.setState({
+      todos: nextTodos,
+    });
+  };
   render() {
     const { input, todos } = this.state;
-    const { handleChange, handleCreate, handleKeyPress } = this;
+    const { handleChange, handleCreate, handleKeyPress, handleToggle } = this;
 
     return (
       <Todotemp
@@ -54,7 +72,7 @@ class App extends Component {
           />
         }
       >
-        <TodoItemList todos={todos} />
+        <TodoItemList todos={todos} onToggle={handleToggle} />
       </Todotemp>
     );
   }
