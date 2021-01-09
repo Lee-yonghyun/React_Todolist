@@ -57,9 +57,23 @@ class App extends Component {
       todos: nextTodos,
     });
   };
+
+  handleRemove = (id) => {
+    const { todos } = this.state;
+    this.setState({
+      todos: todos.filter((todo) => todo.id !== id), // 현재 id가 아닌 것들만 배열형태로 return
+    });
+  };
+
   render() {
     const { input, todos } = this.state;
-    const { handleChange, handleCreate, handleKeyPress, handleToggle } = this;
+    const {
+      handleChange,
+      handleCreate,
+      handleKeyPress,
+      handleToggle,
+      handleRemove,
+    } = this;
 
     return (
       <Todotemp
@@ -72,7 +86,11 @@ class App extends Component {
           />
         }
       >
-        <TodoItemList todos={todos} onToggle={handleToggle} />
+        <TodoItemList
+          todos={todos}
+          onToggle={handleToggle}
+          onRemove={handleRemove}
+        />
       </Todotemp>
     );
   }
